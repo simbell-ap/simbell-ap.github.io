@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日主题大赛在线-每日主题创作赛事在线参与_在线比赛报名与主题作品展示</title>
+<meta name="description" content="每日主题大赛在线是围绕每日主题创作赛事搭建的在线参与入口，提供当天主题公布、在线报名参与、主题作品展示与赛事规则说明，帮助创作者按日参与主题大赛并查看往期主题与评选信息。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2a4a'/%3E%3Ccircle cx='32' cy='27' r='11' fill='%23f5b942'/%3E%3Crect x='16' y='44' width='32' height='6' rx='3' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#1b2a4a;
+  --ink-soft:#3d4f70;
+  --paper:#fbf8f2;
+  --card:#ffffff;
+  --gold:#e0a32e;
+  --gold-deep:#c2881d;
+  --line:#e4ddcf;
+  --muted:#6b7280;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* 页头 */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,248,242,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.head-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:14px 0;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:.2px}
+.brand .mark{width:34px;height:34px;flex:none}
+nav.main{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+nav.main a{
+  padding:7px 12px;border-radius:999px;font-size:14.5px;color:var(--ink-soft);
+  transition:background .18s,color .18s;
+}
+nav.main a:hover,nav.main a:focus-visible{background:#f2ead8;color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 22px;border-radius:999px;font-weight:700;font-size:15px;
+  border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .18s,background .18s;
+}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 6px 18px rgba(27,42,74,.18)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,42,74,.24)}
+.btn-gold{background:var(--gold);color:#3a2a05}
+.btn-gold:hover{background:#eab341;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{background:#f2ead8}
+
+/* 首屏 */
+.hero{padding:56px 0 46px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;
+  color:var(--gold-deep);background:#fbf1da;border:1px solid #f0dfb6;
+  padding:5px 13px;border-radius:999px;margin-bottom:18px;letter-spacing:.5px;
+}
+.hero h1{
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.28;font-weight:900;letter-spacing:-.5px;
+}
+.hero h1 .hl{
+  background:linear-gradient(transparent 62%,#f7dfa6 62%);
+  padding:0 2px;
+}
+.hero p.lead{margin-top:18px;font-size:16.5px;color:var(--ink-soft);max-width:36em}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;padding-top:22px;border-top:1px dashed var(--line)}
+.hero-meta div strong{display:block;font-size:21px;font-weight:900;color:var(--ink)}
+.hero-meta div span{font-size:13px;color:var(--muted)}
+
+.hero-art{
+  background:linear-gradient(160deg,#1b2a4a 0%,#26395f 100%);
+  border-radius:22px;padding:26px;color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 24px 50px rgba(27,42,74,.28);
+}
+.hero-art::after{
+  content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(224,163,46,.35),transparent 70%);
+}
+.hero-art h2{font-size:15px;font-weight:700;color:#f5d489;letter-spacing:1px;margin-bottom:14px}
+.art-theme{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;padding:16px 18px;margin-bottom:12px;
+}
+.art-theme .day{font-size:12px;color:#a9bce0;letter-spacing:1px}
+.art-theme .name{font-size:19px;font-weight:800;margin-top:4px}
+.art-theme .desc{font-size:13.5px;color:#c3cfe6;margin-top:6px;line-height:1.6}
+.art-flow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.art-flow span{
+  font-size:12.5px;padding:5px 11px;border-radius:999px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#dfe6f5;
+}
+
+/* 通用区块 */
+section.block{padding:58px 0}
+.sec-head{max-width:44em;margin-bottom:32px}
+.sec-kicker{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase}
+.sec-head h2{font-size:clamp(22px,2.8vw,30px);font-weight:900;margin-top:8px;line-height:1.35;letter-spacing:-.3px}
+.sec-head p{margin-top:10px;color:var(--ink-soft);font-size:15.5px}
+
+/* 卡片网格 */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;transition:transform .18s,box-shadow .18s,border-color .18s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(27,42,74,.09);border-color:#d6cbaf}
+.card .ico{width:40px;height:40px;border-radius:11px;background:#fbf1da;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.card h3{font-size:17.5px;font-weight:800;margin-bottom:8px}
+.card p{font-size:14.8px;color:var(--ink-soft)}
+.card .tagline{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--gold-deep)}
+
+/* 今日主题区 */
+.today{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.today-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.theme-card{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);
+  padding:22px 24px;margin-bottom:14px;
+}
+.theme-card .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.theme-card h3{font-size:19px;font-weight:800}
+.badge{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:#e8f3e8;color:#2f6b3b}
+.badge.warn{background:#fdf0d8;color:#8a5a08}
+.theme-card ul{margin-top:10px;padding-left:18px;font-size:14.6px;color:var(--ink-soft)}
+.theme-card ul li{margin:4px 0}
+.rules{list-style:none;display:grid;gap:12px}
+.rules li{
+  display:flex;gap:12px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px;font-size:14.8px;color:var(--ink-soft);
+}
+.rules li b{color:var(--ink);font-weight:800;flex:none}
+.num{
+  flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px;
+}
+
+/* 作品展示 */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.work{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  transition:transform .18s,box-shadow .18s;
+}
+.work:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(27,42,74,.09)}
+.work .thumb{aspect-ratio:16/10;background:#eef1f7;position:relative}
+.work .thumb svg{width:100%;height:100%}
+.work .body{padding:16px 18px}
+.work .body h3{font-size:15.5px;font-weight:800}
+.work .body p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.work .body .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.work .body .meta em{font-style:normal;font-weight:800;color:var(--gold-deep)}
+
+/* 往期列表 */
+.past{list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.past li{
+  display:grid;grid-template-columns:96px 1fr auto;gap:18px;align-items:center;
+  padding:16px 4px;border-bottom:1px solid var(--line);
+}
+.past li .d{font-size:13.5px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+.past li .t{font-size:15.5px;font-weight:700}
+.past li .s{font-size:13px;color:var(--muted)}
+
+/* 报名表单 */
+.signup{background:var(--ink);color:#fff;border-radius:22px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.signup h2{font-size:clamp(22px,2.6vw,28px);font-weight:900;line-height:1.35}
+.signup p{color:#c3cfe6;font-size:15px;margin-top:12px}
+.form-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.form-row input{
+  flex:1 1 180px;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);color:#fff;font-size:14.5px;font-family:inherit;
+}
+.form-row input::placeholder{color:#9fb0cf}
+.form-row input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.form-note{font-size:12.5px;color:#9fb0cf;margin-top:10px}
+.feedback{font-size:13.5px;margin-top:10px;color:#f5d489;min-height:1.4em}
+
+/* 页尾 */
+footer.site{background:#14203a;color:#c3cfe6;padding:44px 0 28px;margin-top:0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+footer.site h3{font-size:15px;color:#fff;font-weight:800;margin-bottom:12px}
+footer.site p{font-size:14px;line-height:1.8}
+footer.site ul{list-style:none;display:grid;gap:8px;font-size:14px}
+footer.site ul a:hover{color:#f5d489;text-decoration:underline}
+.foot-bottom{
+  margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#8ea0c0;
+}
+
+/* 响应式 */
+@media (max-width:900px){
+  .hero-grid,.today-inner,.signup{grid-template-columns:1fr}
+  .grid-3,.works{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .hero{padding:40px 0 34px}
+  .signup{padding:28px}
+}
+@media (max-width:620px){
+  body{font-size:15.5px}
+  .head-inner{padding:12px 0;gap:10px}
+  nav.main{order:3;width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  nav.main a{white-space:nowrap;font-size:14px;padding:6px 10px}
+  .grid-3,.grid-2,.works{grid-template-columns:1fr}
+  .past li{grid-template-columns:1fr;gap:4px;padding:14px 2px}
+  .past li .d{font-size:12.5px}
+  .foot-grid{grid-template-columns:1fr}
+  section.block{padding:42px 0}
+  .hero-actions .btn{width:100%}
+  .hero-meta{gap:18px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1b2a4a"/>
+        <circle cx="32" cy="26" r="11" fill="#e0a32e"/>
+        <rect x="15" y="43" width="34" height="6" rx="3" fill="#e0a32e"/>
+      </svg>
+      每日主题大赛在线
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#today">今日主题</a>
+      <a href="#how">参赛方式</a>
+      <a href="#works">主题作品</a>
+      <a href="#past">往期主题</a>
+      <a href="#join">在线报名</a>
+    </nav>
+    <a class="btn btn-gold" href="#join">在线报名</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">每天一个主题 · 在线参与 · 公开展示</span>
+        <h1>每日主题大赛在线</h1>
+        <p class="lead">每日主题大赛在线把“每日主题”与“在线参赛”放在同一个入口：每天公布一个创作主题，创作者在线报名、按主题提交作品，赛后可在同一页面查看主题作品展示与往期主题记录。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#join">查看今日主题并报名</a>
+          <a class="btn btn-ghost" href="#works">浏览主题作品</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>每日 1 个</strong><span>当日主题</span></div>
+          <div><strong>在线提交</strong><span>参赛方式</span></div>
+          <div><strong>公开展示</strong><span>作品与往期</span></div>
+        </div>
+      </div>
+
+      <aside class="hero-art" aria-label="今日主题概览">
+        <h2>今日主题卡</h2>
+        <div class="art-theme">
+          <div class="day">当日主题 · 第 1 号</div>
+          <div class="name">“日常里的一束光”</div>
+          <div class="desc">围绕日常场景中的光线、时刻与小细节展开主题创作，形式不限。</div>
+        </div>
+        <div class="art-theme">
+          <div class="day">参与方式</div>
+          <div class="desc">在线填写报名信息 → 按当日主题提交作品 → 主题作品公开展示。</div>
+        </div>
+        <div class="art-flow">
+          <span>当日主题公布</span>
+          <span>在线报名</span>
+          <span>按主题提交</span>
+          <span>作品展示</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 今日主题 -->
+  <section class="block today" id="today">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">Today's Theme</span>
+        <h2>今日主题与参赛须知</h2>
+        <p>每日主题大赛在线每天只设一个主题，主题在当日页面公布。参赛者围绕同一主题创作，便于横向比较，也让主题大赛在线的每日节奏保持清晰。</p>
+      </div>
+      <div class="today-inner">
+        <div>
+          <article class="theme-card">
+            <div class="row">
+              <h3>第 1 号主题：日常里的一束光</h3>
+              <span class="badge">报名开放</span>
+            </div>
+            <ul>
+              <li>主题范围：日常场景中的光线、时刻与细节。</li>
+              <li>作品形式：文字、图像、短篇创作等非限定形式。</li>
+              <li>提交方式：在线报名后按主题提交，作品进入主题作品展示区。</li>
+            </ul>
+          </article>
+          <article class="theme-card">
+            <div class="row">
+              <h3>第 2 号主题预告</h3>
+              <span class="badge warn">待公布</span>
+            </div>
+            <ul>
+              <li>下一主题在当日赛事结束后更新，具体内容以页面公布为准。</li>
+              <li>往期主题可在“往期主题”区查看，便于回顾与准备。</li>
+            </ul>
+          </article>
+        </div>
+        <ol class="rules">
+          <li><span class="num">1</span><span><b>看主题：</b>进入今日主题区，确认当日主题与作品形式要求。</span></li>
+          <li><span class="num">2</span><span><b>填报名：</b>在在线报名区留下称呼与联系邮箱，用于赛事通知。</span></li>
+          <li><span class="num">3</span><span><b>交作品：</b>按当日主题完成创作，并在线提交作品信息。</span></li>
+          <li><span class="num">4</span><span><b>看展示：</b>作品进入主题作品区公开陈列，可回看往期主题。</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 参赛方式 -->
+  <section class="block" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">How to Join</span>
+        <h2>在线参与每日主题大赛的四个环节</h2>
+        <p>每日主题大赛在线把参与流程压缩成四个可在线完成的环节，从看主题到看展示都在同一页面内闭环。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+          </div>
+          <h3>当日主题公布</h3>
+          <p>每天更新一个主题，主题卡说明创作范围与形式要求，避免参赛者对题目理解不一致。</p>
+          <span class="tagline">主题明确 · 当天可参与</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><path d="M4 20v-6a8 8 0 0 1 16 0v6"/><circle cx="12" cy="7" r="3"/></svg>
+          </div>
+          <h3>在线报名</h3>
+          <p>填写称呼与邮箱即可完成报名登记，用于接收主题变动与作品提交提醒，无需线下往返。</p>
+          <span class="tagline">信息少量 · 在线完成</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><path d="M4 5h16v12H4z"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <h3>主题作品提交</h3>
+          <p>按当日主题完成创作后提交作品信息，作品与主题对应登记，便于展示与回看。</p>
+          <span class="tagline">一主题一作品</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3>主题作品展示</h3>
+          <p>参赛作品在展示区公开陈列，标注对应主题与提交日期，方便对照当日主题查看。</p>
+          <span class="tagline">公开可见 · 按主题归类</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><path d="M5 4h14v16l-7-4-7 4z"/></svg>
+          </div>
+          <h3>往期主题回看</h3>
+          <p>往期主题按日期归档，可查看主题名称与当期作品数量，作为再次参与时的参考。</p>
+          <span class="tagline">按日期归档</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2881d" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg>
+          </div>
+          <h3>评选与结果</h3>
+          <p>评选依据主题契合度与完成度，结果在作品展示区标注；具体评选标准以当期页面说明为准。</p>
+          <span class="tagline">以当期说明为准</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主题作品 -->
+  <section class="block" id="works" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">Gallery</span>
+        <h2>主题作品展示</h2>
+        <p>以下为每日主题大赛在线主题作品展示区的示例条目，每件作品均标注所属主题与提交日期，便于读者理解展示区的组织方式。</p>
+      </div>
+      <div class="works">
+        <article class="work">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" fill="#eef1f7"/><circle cx="230" cy="70" r="40" fill="#f6d68c"/><rect x="40" y="130" width="240" height="10" rx="5" fill="#c9d4e8"/><rect x="60" y="150" width="120" height="8" rx="4" fill="#d9e1f0"/></svg>
+          </div>
+          <div class="body">
+            <h3>《窗台上的九点钟》</h3>
+            <p>主题：日常里的一束光</p>
+            <div class="meta"><span>提交于当日</span><em>展示中</em></div>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" fill="#eef1f7"/><path d="M0 150 L90 80 L170 130 L250 60 L320 110 V200 H0 Z" fill="#c9d4e8"/><circle cx="70" cy="52" r="22" fill="#f6d68c"/></svg>
+          </div>
+          <div class="body">
+            <h3>《回家路上的斜阳》</h3>
+            <p>主题：日常里的一束光</p>
+            <div class="meta"><span>提交于当日</span><em>展示中</em></div>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" fill="#eef1f7"/><rect x="70" y="40" width="180" height="120" rx="8" fill="#fff" stroke="#c9d4e8" stroke-width="3"/><path d="M95 125 L135 90 L165 115 L205 78" stroke="#e0a32e" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+          </div>
+          <div class="body">
+            <h3>《一束光的三段记录》</h3>
+            <p>主题：日常里的一束光</p>
+            <div class="meta"><span>提交于当日</span><em>展示中</em></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 往期主题 -->
+  <section class="block" id="past">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">Archive</span>
+        <h2>往期主题记录</h2>
+        <p>每日主题大赛在线的往期主题按日期归档。下列条目为归档结构示例，用于说明主题名称、日期与作品数量的记录方式。</p>
+      </div>
+      <ul class="past">
+        <li>
+          <span class="d">第 1 期</span>
+          <span class="t">日常里的一束光</span>
+          <span class="s">当期主题 · 作品展示中</span>
+        </li>
+        <li>
+          <span class="d">第 2 期</span>
+          <span class="t">待公布</span>
+          <span class="s">下一主题 · 以页面公布为准</span>
+        </li>
+        <li>
+          <span class="d">第 3 期</span>
+          <span class="t">待公布</span>
+          <span class="s">归档位 · 后续更新</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 报名 -->
+  <section class="block" id="join" style="padding-top:0">
+    <div class="wrap">
+      <div class="signup">
+        <div>
+          <h2>在线报名，参加今日主题大赛</h2>
+          <p>留下称呼与邮箱即可登记参与当日主题。报名信息仅用于赛事通知；提交后可在主题作品展示区查看作品陈列情况。每日主题大赛在线的报名入口在当日主题有效期内开放。</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+            <a class="btn btn-gold" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none">下载主题</a>
+            <a class="btn btn-ghost" href="#today" style="border-color:rgba(255,255,255,.3);color:#fff">返回今日主题</a>
+          </div>
+        </div>
+        <form id="signupForm" novalidate>
+          <div class="form-row">
+            <input type="text" id="nameInput" name="name" placeholder="你的称呼" aria-label="你的称呼" autocomplete="nickname">
+            <input type="email" id="emailInput" name="email" placeholder="联系邮箱" aria-label="联系邮箱" autocomplete="email">
+          </div>
+          <div class="form-row">
+            <button type="submit" class="btn btn-gold" style="flex:1 1 160px">提交报名</button>
+          </div>
+          <p class="form-note">提交即表示同意接收本期主题相关通知。信息仅用于赛事联络。</p>
+          <p class="feedback" id="formFeedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>每日主题大赛在线</h3>
+        <p>围绕每日主题搭建的在线创作赛事入口，提供当日主题公布、在线报名、主题作品展示与往期主题归档，面向希望按日参与主题创作的创作者。</p>
+      </div>
+      <div>
+        <h3>页面导航</h3>
+        <ul>
+          <li><a href="#today">今日主题与须知</a></li>
+          <li><a href="#how">在线参赛环节</a></li>
+          <li><a href="#works">主题作品展示</a></li>
+          <li><a href="#past">往期主题记录</a></li>
+          <li><a href="#join">在线报名入口</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>参与提示</h3>
+        <ul>
+          <li>主题以当日页面公布为准</li>
+          <li>作品需对应所属主题</li>
+          <li>评选标准见当期说明</li>
+          <li>报名信息仅用于赛事通知</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>每日主题大赛在线 · 主题赛事首页</span>
+      <span>内容与数据以页面公布为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('signupForm');
+  var feedback = document.getElementById('formFeedback');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('nameInput').value.trim();
+    var email = document.getElementById('emailInput').value.trim();
+    if(!name){ feedback.textContent = '请先填写你的称呼。'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ feedback.textContent = '请填写有效的联系邮箱。'; return; }
+    feedback.textContent = '报名信息已记录：' + name + '，本期主题通知将发送至 ' + email + '。';
+    form.reset();
+  });
+})();
+</script>
+</body>
+  </html>
