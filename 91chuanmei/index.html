@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>91传媒-传媒资源导航_内容平台_素材下载入口</title>
+<meta name="description" content="91传媒主题首页，汇总传媒内容导航、资源分类、素材下载入口与使用说明，帮助访问者快速定位所需栏目与操作路径。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317222e'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f0a24a' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23f0a24a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#17222e;
+  --ink-soft:#3d4c5c;
+  --paper:#f6f3ee;
+  --card:#ffffff;
+  --line:#e2dcd2;
+  --amber:#c8791f;
+  --amber-soft:#f7e9d6;
+  --teal:#1f6f6b;
+  --teal-soft:#e0efec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,243,238,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.16rem;letter-spacing:.02em}
+.brand svg{width:34px;height:34px;flex:none}
+.nav{display:flex;gap:26px;font-size:.94rem;color:var(--ink-soft);flex-wrap:wrap}
+.nav a{padding:4px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--ink);color:#fff;
+  padding:8px 18px;border-radius:999px;font-size:.9rem;font-weight:600;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--amber)}
+
+/* Hero */
+.hero{padding:64px 0 56px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.82rem;letter-spacing:.14em;color:var(--amber);
+  background:var(--amber-soft);padding:5px 14px;border-radius:999px;font-weight:600;
+  margin-bottom:20px;
+}
+h1{
+  font-size:clamp(2.1rem,4.6vw,3.3rem);
+  line-height:1.18;font-weight:800;letter-spacing:.01em;
+  margin-bottom:20px;
+}
+h1 .accent{color:var(--amber)}
+.hero-lead{font-size:1.04rem;color:var(--ink-soft);max-width:34em;margin-bottom:28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber);color:#fff;font-weight:600;
+  padding:13px 26px;border-radius:10px;
+  box-shadow:0 8px 20px -10px rgba(200,121,31,.8);
+  transition:transform .18s,background .18s;
+}
+.btn-primary:hover{background:#b06a17;transform:translateY(-1px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--ink);color:var(--ink);
+  padding:12px 24px;border-radius:10px;font-weight:600;
+  background:transparent;transition:background .18s,color .18s;
+}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.hero-note{margin-top:18px;font-size:.86rem;color:#7b8794}
+
+/* Hero visual */
+.hero-art{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 24px 48px -32px rgba(23,34,46,.35);
+}
+.hero-art figcaption{font-size:.8rem;color:#7b8794;margin-top:14px;text-align:center}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.stat{background:var(--paper);border-radius:12px;padding:12px 10px;text-align:center}
+.stat b{display:block;font-size:1.15rem;color:var(--teal)}
+.stat span{font-size:.75rem;color:#7b8794}
+
+/* Sections */
+section{padding:56px 0}
+.section-head{margin-bottom:34px;max-width:40em}
+.section-kicker{font-size:.82rem;letter-spacing:.14em;color:var(--teal);font-weight:700;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(1.5rem,2.6vw,1.95rem);font-weight:700;line-height:1.3;margin-bottom:12px}
+.section-head p{color:var(--ink-soft);font-size:.98rem}
+
+/* Nav cards */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:24px;transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -26px rgba(23,34,46,.45);border-color:#d3c9ba}
+.card .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px}
+.card h3{font-size:1.06rem;font-weight:700;margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--ink-soft);margin-bottom:14px}
+.card .link{font-size:.88rem;font-weight:600;color:var(--amber);display:inline-flex;align-items:center;gap:5px}
+.card .link:hover{text-decoration:underline}
+.ic.amber{background:var(--amber-soft);color:var(--amber)}
+.ic.teal{background:var(--teal-soft);color:var(--teal)}
+.ic.slate{background:#e9edf1;color:#41566b}
+
+/* Split content */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.prose p{margin-bottom:16px;color:var(--ink-soft);font-size:.97rem}
+.prose p strong{color:var(--ink)}
+.checklist{list-style:none;display:grid;gap:14px}
+.checklist li{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+}
+.checklist .dot{flex:none;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:.72rem;font-weight:700;margin-top:2px}
+.checklist b{display:block;font-size:.95rem;margin-bottom:2px}
+.checklist span{font-size:.86rem;color:var(--ink-soft)}
+
+/* Download panel */
+.download-panel{
+  background:var(--ink);color:#f3efe8;border-radius:22px;
+  padding:44px;display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center;
+}
+.download-panel h2{color:#fff;margin-bottom:12px}
+.download-panel p{color:#bcc6d1;font-size:.95rem;margin-bottom:8px}
+.btn-download{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--amber);color:#fff;font-weight:700;
+  padding:13px 28px;border-radius:10px;margin-top:16px;
+  pointer-events:none;opacity:.92;
+}
+.download-meta{font-size:.8rem;color:#93a1b0;margin-top:12px}
+.dl-art{display:grid;place-items:center;opacity:.9}
+
+/* FAQ */
+.faq{display:grid;gap:16px}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:0 22px;
+}
+details[open]{border-color:#d3c9ba}
+summary{
+  cursor:pointer;list-style:none;padding:18px 0;font-weight:600;font-size:.98rem;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--amber);font-size:1.2rem;font-weight:400;transition:transform .2s}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 20px;font-size:.92rem;color:var(--ink-soft);max-width:56em}
+
+/* Footer */
+footer{background:#101a24;color:#9fadb9;padding:44px 0 32px;margin-top:24px}
+.footer-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid #22303d}
+.footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:1.05rem}
+.footer-brand svg{width:28px;height:28px}
+.footer-desc{font-size:.86rem;max-width:24em;margin-top:10px;line-height:1.7}
+.footer-links{display:flex;gap:56px;flex-wrap:wrap}
+.footer-col h4{color:#fff;font-size:.88rem;margin-bottom:10px;font-weight:600}
+.footer-col a{display:block;font-size:.84rem;padding:3px 0;color:#9fadb9}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.8rem;color:#6d7d8b}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-art{order:2}
+  .card-grid{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr;gap:30px}
+  .download-panel{grid-template-columns:1fr;padding:32px 26px}
+  .dl-art{display:none}
+}
+@media(max-width:640px){
+  .header-inner{flex-wrap:wrap;gap:10px}
+  .nav{gap:16px;font-size:.88rem;order:3;width:100%;justify-content:flex-start}
+  .nav-cta{display:none}
+  .hero{padding:44px 0 36px}
+  .card-grid{grid-template-columns:1fr}
+  section{padding:42px 0}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .footer-links{gap:36px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="91传媒 首页">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#17222e"/>
+        <circle cx="32" cy="32" r="17" fill="none" stroke="#f0a24a" stroke-width="5"/>
+        <circle cx="32" cy="32" r="6" fill="#f0a24a"/>
+      </svg>
+      <span>91传媒</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#channels">内容栏目</a>
+      <a href="#guide">使用指南</a>
+      <a href="#download">资源下载</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="nav-cta" href="#download">进入下载</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">传媒内容 · 资源导航</span>
+        <h1>91传媒</h1>
+        <p class="hero-lead">91传媒是面向内容访问者的传媒资源主题首页，将栏目导航、内容分类、素材下载入口与使用说明集中在一处，方便你按需查找并进入对应区域。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#channels">
+            浏览内容栏目
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn-ghost" href="#guide">查看使用指南</a>
+        </div>
+        <p class="hero-note">资源下载入口位于本页「资源下载」区域，下载按钮将在地址更新后开放。</p>
+      </div>
+      <figure class="hero-art">
+        <svg viewBox="0 0 360 220" width="100%" role="img" aria-label="传媒内容结构示意图">
+          <rect x="0" y="0" width="360" height="220" rx="14" fill="#f6f3ee"/>
+          <rect x="22" y="24" width="120" height="14" rx="7" fill="#d8d0c4"/>
+          <rect x="22" y="52" width="200" height="9" rx="4.5" fill="#e5ded3"/>
+          <rect x="22" y="70" width="164" height="9" rx="4.5" fill="#e5ded3"/>
+          <rect x="22" y="100" width="98" height="66" rx="10" fill="#ffffff" stroke="#e2dcd2"/>
+          <rect x="132" y="100" width="98" height="66" rx="10" fill="#ffffff" stroke="#e2dcd2"/>
+          <rect x="242" y="100" width="96" height="66" rx="10" fill="#f7e9d6" stroke="#e9d5b9"/>
+          <circle cx="48" cy="122" r="9" fill="#1f6f6b"/>
+          <rect x="40" y="140" width="60" height="7" rx="3.5" fill="#dfe7e6"/>
+          <circle cx="158" cy="122" r="9" fill="#c8791f"/>
+          <rect x="150" y="140" width="60" height="7" rx="3.5" fill="#f0e2cd"/>
+          <circle cx="268" cy="122" r="9" fill="#41566b"/>
+          <rect x="260" y="140" width="58" height="7" rx="3.5" fill="#e3e6ea"/>
+          <rect x="22" y="184" width="316" height="8" rx="4" fill="#e5ded3"/>
+        </svg>
+        <div class="stat-row">
+          <div class="stat"><b>4</b><span>主题栏目</span></div>
+          <div class="stat"><b>3</b><span>操作路径</span></div>
+          <div class="stat"><b>1</b><span>下载入口</span></div>
+        </div>
+        <figcaption>91传媒页面内容结构示意</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Channels -->
+  <section id="channels">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">内容栏目</div>
+        <h2>91传媒的内容分区与访问入口</h2>
+        <p>四个栏目各自承担不同的访问任务：导航定位、内容分类、使用说明与资源下载。你可以按需从任一入口进入，无需逐层跳转。</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="ic amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.6"/><rect x="14" y="4" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>
+          </div>
+          <h3>栏目导航</h3>
+          <p>将91传媒的主要分区汇总成清晰入口，适合首次访问时快速了解页面结构，确定自己需要的内容方向。</p>
+          <a class="link" href="#guide">了解导航方式 →</a>
+        </article>
+        <article class="card">
+          <div class="ic teal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+          </div>
+          <h3>内容分类</h3>
+          <p>按主题对传媒内容做粗分类，说明各类别覆盖的范围与阅读顺序，帮助访问者减少无关浏览。</p>
+          <a class="link" href="#guide">查看分类说明 →</a>
+        </article>
+        <article class="card">
+          <div class="ic slate">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+          </div>
+          <h3>资源下载</h3>
+          <p>集中呈现91传媒的下载入口与状态说明。当前下载地址尚未替换，按钮保持禁用并标注真实状态。</p>
+          <a class="link" href="#download">前往下载区域 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">使用指南</div>
+        <h2>如何高效使用91传媒首页</h2>
+        <p>页面信息按访问顺序排列，下面说明各栏目解决的问题，以及推荐的阅读与操作路径。</p>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p><strong>先定位，再深入。</strong>91传媒首页把导航放在最上层，首屏给出页面定位与两个主要入口：浏览内容栏目、查看使用指南。访问者不必先滚动到底部寻找链接。</p>
+          <p><strong>按任务选择栏目。</strong>如果你只是需要了解页面提供什么内容，阅读「内容栏目」即可；如果你需要下载资源，可直接跳转到「资源下载」区域，该区域的按钮状态会明确提示是否可以点击。</p>
+          <p><strong>保持信息一致。</strong>91传媒页面中的栏目名称、入口说明与按钮状态互相对应，避免出现描述与功能不一致的情况。所有重要内容均直接呈现在页面中，不依赖额外加载。</p>
+          <p><strong>移动端同样可用。</strong>窄屏下导航自动换行，卡片改为单列排列，首屏优先展示标题与说明文字，装饰图形退居次要位置，保证小屏阅读时主题文字先出现。</p>
+        </div>
+        <ul class="checklist">
+          <li>
+            <span class="dot">1</span>
+            <div><b>从首屏确定方向</b><span>阅读91传媒的页面说明，判断自己需要内容浏览还是资源下载。</span></div>
+          </li>
+          <li>
+            <span class="dot">2</span>
+            <div><b>用导航直达栏目</b><span>顶栏四个锚点分别对应内容栏目、使用指南、资源下载与常见问题。</span></div>
+          </li>
+          <li>
+            <span class="dot">3</span>
+            <div><b>核对下载状态</b><span>下载按钮当前为禁用状态，需等待真实地址替换后再使用。</span></div>
+          </li>
+          <li>
+            <span class="dot">4</span>
+            <div><b>查阅常见问题</b><span>页面末段集中回答关于栏目、下载与内容更新的常见疑问。</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download -->
+  <section id="download">
+    <div class="wrap">
+      <div class="download-panel">
+        <div>
+          <h2>91传媒资源下载入口</h2>
+          <p>下载区域用于集中放置91传媒的可用资源文件。当前下载地址尚未接入，按钮按实际状态保持禁用，避免产生无效点击。</p>
+          <p>地址更新后，此处的按钮将直接指向真实文件，无需修改页面其他部分。</p>
+          <a class="btn-download" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+            下载
+          </a>
+          <p class="download-meta">状态：地址待更新 · 按钮暂不可用</p>
+        </div>
+        <div class="dl-art" aria-hidden="true">
+          <svg viewBox="0 0 160 160" width="150" height="150">
+            <circle cx="80" cy="80" r="66" fill="none" stroke="#2b3b4b" stroke-width="10"/>
+            <path d="M80 46v52M58 78l22 22 22-22" stroke="#f0a24a" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M52 118h56" stroke="#f0a24a" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">常见问题</div>
+        <h2>关于91传媒的常见疑问</h2>
+        <p>以下回答仅针对本页面当前呈现的内容与状态，不涉及页面之外的承诺。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>91传媒首页主要提供哪些内容？</summary>
+          <p>页面围绕传媒内容访问需求组织，包含栏目导航、内容分类说明、使用指南、资源下载入口与常见问题五个部分。所有文字内容直接呈现在页面中，便于检索与阅读。</p>
+        </details>
+        <details>
+          <summary>为什么下载按钮不能点击？</summary>
+          <p>下载按钮当前处于占位状态，真实文件地址尚未接入。按规范按钮显示为「下载」并保持禁用，访问者不会触发无效跳转。地址更新后按钮即可正常使用。</p>
+        </details>
+        <details>
+          <summary>页面内容会持续更新吗？</summary>
+          <p>本页作为主题首页，栏目结构与入口说明以当前版本为准。具体内容更新情况不在页面中作额外承诺，访问者以实际看到的内容为判断依据。</p>
+        </details>
+        <details>
+          <summary>在小屏设备上如何浏览91传媒？</summary>
+          <p>移动端会优先展示标题与说明文字，导航自动换行，内容卡片改为单列。各栏目的锚点链接在手机上同样可用，点击后页面会滚动到对应区域。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#1e2b38"/>
+            <circle cx="32" cy="32" r="17" fill="none" stroke="#f0a24a" stroke-width="5"/>
+            <circle cx="32" cy="32" r="6" fill="#f0a24a"/>
+          </svg>
+          <span>91传媒</span>
+        </div>
+        <p class="footer-desc">91传媒主题首页，集中呈现栏目导航、内容说明与资源下载入口，帮助访问者快速找到所需区域。</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>页面栏目</h4>
+          <a href="#channels">内容栏目</a>
+          <a href="#guide">使用指南</a>
+          <a href="#download">资源下载</a>
+          <a href="#faq">常见问题</a>
+        </div>
+        <div class="footer-col">
+          <h4>访问入口</h4>
+          <a href="#top">返回顶部</a>
+          <a href="#download">下载状态说明</a>
+          <a href="#guide">阅读路径</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 91传媒 · 主题首页</span>
+      <span>内容以本页实际呈现为准</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
