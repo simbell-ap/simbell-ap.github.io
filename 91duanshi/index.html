@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>91短视频网页版-91短视频网页版在线观看入口_网页版短视频浏览与内容推荐</title>
+<meta name="description" content="91短视频网页版主题首页，梳理网页版短视频浏览的核心需求：在线观看入口、内容分类浏览、推荐逻辑说明、移动端适配与使用注意事项，帮助访客快速了解91短视频网页版的实际使用方式。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23131826'/%3E%3Crect x='14' y='18' width='26' height='28' rx='6' fill='%23ff5a3c'/%3E%3Cpath d='M44 26l8-5v22l-8-5z' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1220;
+  --bg-soft:#171b2e;
+  --card:#1d2238;
+  --line:#2c3350;
+  --text:#eef1f8;
+  --muted:#a7aec6;
+  --accent:#ff5a3c;
+  --accent2:#ffd166;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,18,32,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;gap:18px;
+  padding:12px 0;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:.2px}
+.brand .logo-mark{
+  width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(140deg,#ff5a3c,#ff8a3c);
+  display:grid;place-items:center;flex:0 0 auto;
+}
+.brand .logo-mark svg{width:22px;height:22px}
+.brand-text{white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{
+  padding:7px 12px;border-radius:999px;font-size:14px;color:var(--muted);
+  transition:.2s;
+}
+.nav a:hover,.nav a:focus-visible{color:var(--text);background:var(--card)}
+.nav a.primary{background:var(--accent);color:#fff;font-weight:600}
+.nav a.primary:hover{background:#ff7057}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:56px 0 46px;
+  background:
+    radial-gradient(700px 320px at 78% 0%,rgba(255,90,60,.20),transparent 70%),
+    radial-gradient(520px 280px at 8% 100%,rgba(255,209,102,.12),transparent 70%);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:42px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:1.5px;color:var(--accent2);
+  border:1px solid rgba(255,209,102,.35);
+  padding:4px 12px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-size:clamp(28px,4.4vw,46px);
+  line-height:1.22;font-weight:800;letter-spacing:-.5px;
+}
+.hero p.lead{
+  margin-top:18px;color:var(--muted);font-size:16.5px;max-width:36em;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:12px;font-weight:600;font-size:15px;
+  border:1px solid transparent;transition:.2s;
+}
+.btn-main{background:var(--accent);color:#fff}
+.btn-main:hover{background:#ff7057}
+.btn-ghost{border-color:var(--line);color:var(--text);background:var(--bg-soft)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-disabled{
+  background:var(--bg-soft);color:var(--muted);
+  border:1px dashed var(--line);
+  pointer-events:none;cursor:default;
+}
+.hero-facts{
+  display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;
+  padding-top:22px;border-top:1px solid var(--line);
+}
+.fact b{display:block;font-size:20px;color:var(--accent2)}
+.fact span{font-size:13px;color:var(--muted)}
+
+.hero-visual{
+  position:relative;border-radius:22px;padding:18px;
+  background:linear-gradient(160deg,#232a45,#151929);
+  border:1px solid var(--line);
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.9);
+}
+.player-mock{
+  border-radius:14px;overflow:hidden;background:#0b0e18;border:1px solid var(--line);
+}
+.player-mock .screen{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#2b3355,#171c2e)}
+.player-mock .screen::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 55%,rgba(255,90,60,.28),transparent 62%);
+}
+.play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:62px;height:62px;border-radius:50%;
+  background:rgba(255,255,255,.92);
+  display:grid;place-items:center;z-index:2;
+}
+.play-btn svg{width:24px;height:24px;margin-left:3px}
+.bar{height:4px;background:#2c3350;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:46%;background:var(--accent)}
+.player-meta{padding:12px 14px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:10px}
+.player-meta strong{color:var(--text);font-size:14px}
+
+/* sections */
+section{padding:54px 0}
+.sec-head{max-width:44em;margin-bottom:30px}
+.sec-kicker{
+  font-size:12.5px;letter-spacing:2px;color:var(--accent);font-weight:700;text-transform:uppercase;
+}
+h2{font-size:clamp(21px,2.6vw,28px);margin-top:8px;line-height:1.35;font-weight:800}
+.sec-head p{margin-top:12px;color:var(--muted);font-size:15.5px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;transition:.25s;
+}
+.card:hover{transform:translateY(-3px);border-color:#3b4468}
+.card .ico{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(255,90,60,.14);margin-bottom:14px;
+}
+.card .ico svg{width:22px;height:22px}
+.card h3{font-size:16.5px;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--muted)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{
+  position:relative;background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px 22px 22px;
+}
+.step::before{
+  counter-increment:s;content:"0" counter(s);
+  position:absolute;top:-13px;left:22px;
+  font-size:12px;font-weight:800;letter-spacing:1px;
+  background:var(--accent);color:#fff;padding:2px 10px;border-radius:999px;
+}
+.step h3{font-size:16px;margin:6px 0 8px}
+.step p{font-size:14.5px;color:var(--muted)}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.prose p{color:var(--muted);font-size:15.5px;margin-bottom:14px}
+.prose p strong{color:var(--text)}
+.checklist{list-style:none;display:grid;gap:12px}
+.checklist li{
+  display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--text);
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+}
+.checklist svg{width:18px;height:18px;flex:0 0 auto;margin-top:3px}
+
+/* table-ish faq */
+.faq{display:grid;gap:12px}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;
+}
+details[open]{border-color:#3b4468}
+summary{
+  cursor:pointer;font-weight:600;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:20px;line-height:1;font-weight:700}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);font-size:14.5px}
+
+/* cta band */
+.cta-band{
+  background:linear-gradient(120deg,#241a2b,#1a1f38);
+  border:1px solid var(--line);border-radius:22px;
+  padding:36px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+}
+.cta-band h2{font-size:clamp(20px,2.4vw,26px)}
+.cta-band p{color:var(--muted);margin-top:8px;font-size:15px;max-width:38em}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0 42px;margin-top:20px}
+.foot-top{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px}
+.foot-brand .logo-mark{
+  width:32px;height:32px;border-radius:9px;background:linear-gradient(140deg,#ff5a3c,#ff8a3c);
+  display:grid;place-items:center;
+}
+.foot-brand .logo-mark svg{width:18px;height:18px}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.foot-links a:hover{color:var(--accent2)}
+.foot-note{margin-top:20px;font-size:13px;color:#7f87a0;line-height:1.8}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-visual{order:2}
+  .cards,.steps{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr;gap:26px}
+}
+@media (max-width:620px){
+  body{font-size:15.5px}
+  .header-inner{padding:10px 0;gap:10px}
+  .nav{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  .nav a{white-space:nowrap;font-size:13.5px}
+  .hero{padding:34px 0 32px}
+  .cards,.steps{grid-template-columns:1fr}
+  .cta-band{padding:26px 20px}
+  .hero-facts{gap:20px}
+  section{padding:40px 0}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="12" height="14" rx="3" fill="#fff"/><path d="M16 9l5-3v12l-5-3z" fill="#fff" opacity=".85"/></svg>
+      </span>
+      <span class="brand-text">91短视频网页版</span>
+    </div>
+    <nav class="nav" aria-label="主导航">
+      <a href="#overview">主题概览</a>
+      <a href="#features">浏览方式</a>
+      <a href="#steps">使用步骤</a>
+      <a href="#notes">注意事项</a>
+      <a href="#faq">常见问题</a>
+      <a class="primary" href="#overview">开始了解</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">短视频 · 网页端浏览主题</span>
+        <h1>91短视频网页版</h1>
+        <p class="lead">这是一个围绕“网页版看短视频”这一访问需求整理的主题页面。91短视频网页版关注的核心问题很直接：不安装客户端，只在浏览器里如何浏览短视频内容、如何找到分类入口、如何判断推荐内容是否适合自己。下面按访问顺序逐层说明。</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#overview">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="#fff"/></svg>
+            阅读主题说明
+          </a>
+          <a class="btn btn-ghost" href="#features">查看浏览方式</a>
+          <a class="btn btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact"><b>网页端</b><span>免安装即开即用</span></div>
+          <div class="fact"><b>分类浏览</b><span>按主题找内容</span></div>
+          <div class="fact"><b>移动适配</b><span>手机浏览器可读</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="player-mock">
+          <div class="screen">
+            <span class="play-btn">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7z" fill="#131826"/></svg>
+            </span>
+          </div>
+          <div class="bar"><i></i></div>
+          <div class="player-meta">
+            <strong>短视频浏览界面示意</strong>
+            <span>网页端</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">主题概览</span>
+        <h2>91短视频网页版是什么，适合谁访问</h2>
+        <p>把“短视频”和“网页版”放在一起，指向的是一种使用方式：通过浏览器打开页面，直接浏览短视频内容，而不必先下载安装应用。91短视频网页版这一主题页围绕这种使用方式，把访问前需要知道的信息集中说明。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2.5" stroke="#ff8a6e" stroke-width="1.8"/><path d="M8 21h8" stroke="#ff8a6e" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <h3>免安装的浏览入口</h3>
+          <p>网页版的最大特点是打开即用。对偶尔观看、或临时借用设备的访客，91短视频网页版提供了一条不需要在本地安装程序的路径。</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h13" stroke="#ff8a6e" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <h3>以分类找内容</h3>
+          <p>短视频数量大，靠逐个翻找效率低。网页版通常按主题、热度或更新时间组织内容，91短视频网页版的浏览起点应是分类而不是随机点击。</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#ff8a6e" stroke-width="1.8"/><path d="M10.5 18.5h3" stroke="#ff8a6e" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <h3>手机浏览器场景</h3>
+          <p>不少访客是在手机浏览器里输入地址。页面能否在小屏上正常阅读、按钮是否便于点按，直接影响91短视频网页版的实际体验。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">浏览方式</span>
+        <h2>在91短视频网页版里，内容通常这样被组织</h2>
+        <p>下面四种方式是短视频类网页常见的组织逻辑，也是判断一个网页版是否好用的观察点。它们分别解决“看什么”“先看哪个”“怎么连续看”“在哪看”四个问题。</p>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p><strong>首页推荐流。</strong>打开页面后最先看到的是聚合内容，通常按近期热度或更新顺序排列。它的作用是快速给出一个起点，而不是让访客自己从零搜索。</p>
+          <p><strong>分类与标签。</strong>当访客已有明确兴趣时，分类比推荐更高效。91短视频网页版这类页面一般提供多个内容分区，标签用于在分区内进一步收窄范围。</p>
+          <p><strong>连续播放。</strong>短视频的观看节奏偏快，网页端常见上下滑动或自动切下一条的交互。理解这一逻辑，能减少在页面里来回寻找入口的时间。</p>
+          <p><strong>播放与页面分离。</strong>部分页面支持在当前页内播放，部分会跳转到独立播放页。访问时留意地址栏变化，有助于判断自己处在哪个层级。</p>
+        </div>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>先看首页推荐，确定大致兴趣方向</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>再用分类或标签，把范围收窄到具体主题</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>遇到感兴趣的内容，优先使用页内连续播放</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>切换设备前，留意地址是否可复用</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>网络不稳时降低清晰度，保证浏览连贯</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section id="steps">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">使用步骤</span>
+        <h2>第一次访问91短视频网页版的三步路径</h2>
+        <p>把访问拆成三步，可以避免一进页面就迷失在内容流里。每一步都对应一个明确动作，做完再进入下一步。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>确认访问地址</h3>
+          <p>先在浏览器地址栏核对域名与页面标题是否一致。91短视频网页版作为主题词被广泛提及，访问前看清地址，是避免进入无关页面的第一步。</p>
+        </div>
+        <div class="step">
+          <h3>从分类入手筛选</h3>
+          <p>进入后不必立刻点击第一条内容，先浏览分区名称，选出与自己兴趣最接近的一类，再在该类下按更新或热度排序。</p>
+        </div>
+        <div class="step">
+          <h3>按需调整观看设置</h3>
+          <p>根据网络情况选择清晰度，手机端可横屏获得更大画面。若页面加载缓慢，先暂停自动播放，再逐条点开。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">注意事项</span>
+        <h2>网页端浏览短视频，值得留意的几件事</h2>
+        <p>网页版便利，但也有与客户端不同的地方。以下几条来自网页端使用的普遍规律，适用于91短视频网页版这类页面。</p>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p><strong>页面加载依赖网络。</strong>网页版的播放、切换与图片加载都走浏览器请求，网络波动时体验下降更明显。遇到卡顿，先检查网络再判断页面本身。</p>
+          <p><strong>浏览器差异存在。</strong>不同内核的浏览器对视频格式、自动播放策略的支持并不一致。若某条内容无法播放，换一个浏览器往往能排除问题。</p>
+          <p><strong>小屏优先竖屏体验。</strong>手机浏览器中，竖屏布局更贴合短视频比例；横屏适合需要更大画面的场景，但按钮位置会变化，点按前先看清。</p>
+        </div>
+        <div class="prose">
+          <p><strong>留意自动播放与流量。</strong>移动网络下自动播放会持续消耗流量，可在浏览器设置中限制自动播放，或改用 Wi-Fi 环境浏览。</p>
+          <p><strong>区分页面层级。</strong>列表页、播放页、分类页的返回逻辑不同，使用浏览器返回键时注意是否回到预期位置，避免反复跳转。</p>
+          <p><strong>内容判断靠自己。</strong>推荐流只提供顺序，不构成对内容的评价。浏览时保持独立判断，遇到不确定的信息以权威来源为准。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-kicker">常见问题</span>
+        <h2>关于91短视频网页版的几个直接回答</h2>
+        <p>以下问题集中在访问方式与使用条件上，回答保持在该主题可说明的范围内。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>91短视频网页版需要安装软件吗？</summary>
+          <p>网页版的核心特点就是通过浏览器访问，不需要在设备上安装客户端。是否提供独立应用、以及应用的下载方式，以实际页面说明为准，本页的“下载”入口目前为占位状态。</p>
+        </details>
+        <details>
+          <summary>手机上能正常浏览91短视频网页版吗？</summary>
+          <p>可以。网页版通常做了移动端适配，页面宽度随屏幕变化，导航与按钮按小屏重新排列。竖屏适合连续浏览，横屏适合需要更大画面的情况。</p>
+        </details>
+        <details>
+          <summary>网页版和客户端在体验上有什么区别？</summary>
+          <p>网页版省去安装步骤，打开即用，适合临时或跨设备访问；客户端一般在播放稳定性、消息通知和本地缓存上更完整。选择哪种取决于使用频率与设备条件。</p>
+        </details>
+        <details>
+          <summary>播放卡顿应该先检查什么？</summary>
+          <p>先确认网络是否稳定，再尝试降低清晰度或关闭其他占用带宽的标签页。若只有个别内容异常，可能是该内容源本身的问题，换一条内容即可验证。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>把浏览路径理顺，再开始看内容</h2>
+          <p>91短视频网页版的价值不在内容数量，而在访问路径是否清楚：选对地址、从分类进入、按网络条件调整设置。按这三步走，网页端浏览会顺畅很多。</p>
+        </div>
+        <a class="btn btn-main" href="#overview">回到主题概览</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="12" height="14" rx="3" fill="#fff"/><path d="M16 9l5-3v12l-5-3z" fill="#fff" opacity=".85"/></svg>
+        </span>
+        91短视频网页版
+      </div>
+      <nav class="foot-links" aria-label="页尾导航">
+        <a href="#overview">主题概览</a>
+        <a href="#features">浏览方式</a>
+        <a href="#steps">使用步骤</a>
+        <a href="#notes">注意事项</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+    </div>
+    <p class="foot-note">本页为91短视频网页版主题说明页，内容围绕网页端短视频浏览的访问方式、内容组织与使用注意展开，不提供具体内容源。页面中的播放界面为示意图形，下载入口为占位状态，实际地址与功能以正式页面为准。</p>
+  </div>
+</footer>
+
+</body>
+</html>
